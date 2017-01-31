@@ -1,2 +1,2 @@
 # Czip
-Compress n files and create a .zip archive
+Compress N files and create a .zip archive
