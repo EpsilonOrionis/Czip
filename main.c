@@ -97,8 +97,8 @@ void printContentDirectory() {
     		
     	}
     	
-    printf("///////////////////\n\n");
-    closedir(d);
+    	printf("///////////////////\n\n");
+    	closedir(d);
   	}
 }
 
@@ -123,7 +123,7 @@ int countFiles() {
 			}
     	}
     	
-    closedir(d);
+    	closedir(d);
   	}
   	
   	return file_count;
