@@ -6,9 +6,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h> // Libreria utilizzata per visualizzare i files nella cartella
+#include <string.h>
 
 // Prototipo della funzione printContentDirectory
 void printContentDirectory();
+
+// Prototipo della funzione countFiles
+int countFiles();
 
 // Prototipo della funzione loadFilesNames
 void loadFilesNames();
@@ -18,12 +22,14 @@ int main(int argc, char** argv) {
 	
 	// Variabile per la scelta del menu
 	int menu_choice = 0;
-	// Vettore che conterr� i nomi dei files da archiviare
-	//char to_archive[getFilesCount()];
-	// Questo vettore contiene il nome dei files della cartella
-	//char all_files[getFilesCount()];
+	char files[countFiles()][100];
 	
-	loadFilesNames();
+	//strcpy(files[0], "Mirko");
+	//strcpy(files[1], "aaa");
+	
+	//printf("%s", files[0]);
+	
+	//loadFilesNames();
 	
    // Stampa un menu per chiedere cosa fare
    do {
@@ -83,12 +89,44 @@ void printContentDirectory() {
   		
     	while ((dir = readdir(d)) != NULL) {
     		
-      		printf("%s\n", dir->d_name);
+    		if (!strcmp(dir->d_name, ".") || !strcmp(dir->d_name, "..")) {
+    			continue; /* Skip self and parent */
+			} else {
+				printf("%s\n", dir->d_name);
+			}
+    		
     	}
     	
     printf("///////////////////\n\n");
     closedir(d);
   	}
+}
+
+// Conta quanti file ci sono nella cartella
+int countFiles() {
+	
+	int file_count = 0;
+	
+	// Crea un puntatore di tipo DIR
+    DIR *d;
+  	struct dirent *dir; 
+  	d = opendir(".");
+  	
+  	if (d) {
+  		
+    	while ((dir = readdir(d)) != NULL) {
+    		
+    		if (!strcmp(dir->d_name, ".") || !strcmp(dir->d_name, "..")) {
+    			continue; /* Skip self and parent */
+			} else {
+				file_count++;
+			}
+    	}
+    	
+    closedir(d);
+  	}
+  	
+  	return file_count;
 }
 
 // Carica in un vettore i nomi dei files nella cartella
