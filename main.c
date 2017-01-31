@@ -10,13 +10,22 @@
 // Prototipo della funzione printContentDirectory
 void printContentDirectory();
 
+// Prototipo della funzione loadFilesNames
+int loadFilesNames();
+
 // Inizio funzione main
 int main(int argc, char** argv) {
 	
 	// Variabile per la scelta del menu
 	int menu_choice = 0;
+	// Vettore che conterr� i nomi dei files da archiviare
+	//char to_archive[getFilesCount()];
+	// Questo vettore contiene il nome dei files della cartella
+	//char all_files[getFilesCount()];
 	
-	// Stampa un menu per chiedere cosa fare
+	loadFilesNames();
+	
+   // Stampa un menu per chiedere cosa fare
    do {
 		
 		printf("1) Mostra contenuto della cartella\n");
@@ -33,6 +42,12 @@ int main(int argc, char** argv) {
 				
 				printContentDirectory();
 				menu_choice = 0;
+				break;
+			}
+			
+			case 2: {
+				
+				
 				break;
 			}
 			
@@ -57,6 +72,7 @@ int main(int argc, char** argv) {
 
 // Questa funzione visualizza i file contenuti nella directory
 void printContentDirectory() {
+	
 	// Crea un puntatore di tipo DIR
     DIR *d;
   	struct dirent *dir; 
@@ -73,4 +89,9 @@ void printContentDirectory() {
     printf("///////////////////\n\n");
     closedir(d);
   	}
+}
+
+// Carica in un vettore i nomi dei files nella cartella
+void loadFilesNames() {
+	
 }
