@@ -1,2 +1,4 @@
 # Czip
-Compress N files and create a .zip archive
+Compress n files and create a .zip archive
+
+![Czip](./Compress-data.jpg)
