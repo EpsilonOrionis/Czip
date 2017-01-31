@@ -11,7 +11,7 @@
 void printContentDirectory();
 
 // Prototipo della funzione loadFilesNames
-int loadFilesNames();
+void loadFilesNames();
 
 // Inizio funzione main
 int main(int argc, char** argv) {
