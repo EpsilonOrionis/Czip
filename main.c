@@ -10,8 +10,9 @@
 // Inizio funzione main
 int main(int argc, char** argv) {
 
+	// Crea un puntatore di tipo DIR
     DIR *d;
-  	struct dirent *dir;
+  	struct dirent *dir; 
   	d = opendir(".");
   	if (d) {
   		
