@@ -14,9 +14,6 @@ void printContentDirectory();
 // Prototipo della funzione countFiles
 int countFiles();
 
-// Prototipo della funzione loadFilesNames
-void loadFilesNames();
-
 // Inizio funzione main
 int main(int argc, char** argv) {
 	
@@ -24,13 +21,31 @@ int main(int argc, char** argv) {
 	int menu_choice = 0;
 	char files[countFiles()][100];
 	
-	//strcpy(files[0], "Mirko");
-	//strcpy(files[1], "aaa");
 	
-	//printf("%s", files[0]);
+	//////// Carica i nomi dei files nel vettore files ////////
+	int file_counter = 0;
 	
-	//loadFilesNames();
-	
+	// Crea un puntatore di tipo DIR
+    DIR *d;
+  	struct dirent *dir; 
+  	d = opendir(".");
+  	
+  	if (d) {
+  		
+    	while ((dir = readdir(d)) != NULL) {
+    		
+    		if (!strcmp(dir->d_name, ".") || !strcmp(dir->d_name, "..")) {
+    			continue; /* Skip self and parent */
+			} else {
+				strcpy(files[file_counter], dir->d_name);
+				file_counter++;
+			}
+    	}
+    	
+    	closedir(d);
+  	}
+  	//////// FINE CARICAMENTO NOMI ////////
+	  	
    // Stampa un menu per chiedere cosa fare
    do {
 		
@@ -59,7 +74,7 @@ int main(int argc, char** argv) {
 			
 			case 9: {
 				
-				printf("Czip by Mirko Buttazzo (mirko9662@gmail.com)");
+				printf("\nCzip by Mirko Buttazzo (mirko9662@gmail.com)");
 				break;
 			}
 			
@@ -127,9 +142,4 @@ int countFiles() {
   	}
   	
   	return file_count;
-}
-
-// Carica in un vettore i nomi dei files nella cartella
-void loadFilesNames() {
-	
 }
